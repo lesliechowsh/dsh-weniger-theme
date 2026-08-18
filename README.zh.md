@@ -15,29 +15,7 @@
 
 ## 安装
 
-三种方式任选其一，效果相同，按你的环境挑一种即可。
-
-### 方式 A · 让 agent 安装（零依赖，推荐）
-
-任何 DSH 部署都能用，不需要 npm，不需要 CLI，也不用复制代码。只发给 agent 这一句话：
-
-> 帮我安装 Weniger 主题：仓库是 github:lesliechowsh/dsh-weniger-theme，把其中的 `weniger-theme.client.js` 创建为动态 Cordis 插件并运行。
-
-然后点击 Run 卡片上的**批准**——界面立即切换为 Weniger 风格。
-
-<details>
-<summary>无网络时的备选（agent 无法联网取文件）</summary>
-
-把 `weniger-theme.client.js` 的**全文**粘贴到这句话后面：
-
-> 请把下面的代码创建为动态 Cordis 插件并运行：
-> `（在此粘贴 weniger-theme.client.js 的全部内容）`
-
-</details>
-
-### 方式 B · npm 插件包安装（生态标准）
-
-适用于带 `dsh plugin` 子命令的 DSH 发行版：
+作为 DSH web 插件安装，然后重启 `dsh web`：
 
 ```sh
 dsh plugin --profile web add dsh-weniger-theme@latest
@@ -49,14 +27,35 @@ dsh plugin --profile web add dsh-weniger-theme@latest
 dsh plugin --profile web add github:lesliechowsh/dsh-weniger-theme
 ```
 
-重启 `dsh web` 生效。
+<details>
+<summary>没有 <code>dsh plugin</code> 子命令的部署（手动安装）</summary>
 
-### 卸载
+1. 把包安装进你的 web profile：
 
-- 侧边栏底部 → 插件管理器（Cordis 面板）→ 找到 **Weniger** → 停用/移除；
-- 或对 agent 说：*"移除 Weniger 插件"*。
+   ```sh
+   cd "$DSH_HOME/profiles/web"
+   npm install dsh-weniger-theme
+   ```
 
-主题会在激活时把界面切换到浅色方案一次；之后你仍可在「设置 → 外观」切回深色（Weniger 的深色变体同样完整）。
+2. 在 profile 的 `cordis.patch.yml` 中追加一段 insert 条目：
+
+   ```yaml
+   - insert:
+       - id: weniger-theme
+         name: 'dsh-weniger-theme'
+   ```
+
+3. 重启 `dsh web`。
+
+</details>
+
+## 卸载
+
+```sh
+dsh plugin --profile web remove dsh-weniger-theme
+```
+
+（手动安装：删除 `cordis.patch.yml` 中的条目和依赖，再重启。）主题会在激活时把界面切换到浅色方案一次；之后你仍可在「设置 → 外观」切回深色——Weniger 的深色变体同样完整。
 
 ---
 
@@ -69,9 +68,9 @@ dsh plugin --profile web add github:lesliechowsh/dsh-weniger-theme
 
 ## 仓库结构
 
-- `weniger-theme.client.js` — 动态插件形式的主题（安装方式 A）。
-- `client.js` + `index.js` + `package.json` — 同一主题的标准 DSH 客户端模块（`dsh.client` manifest，安装方式 B）。
-- `ui-probe.host.js` / `ui-probe.client.js` — 开发期自审工具（计算样式探针 + Snapdom 截图回传），可选。
+- `client.js` + `index.js` + `package.json` — 标准 DSH 客户端模块形式的插件（`dsh.client` manifest）。
+- `weniger-theme.client.js` — 开发用动态插件形式（迭代调试用），安装不需要。
+- `ui-probe.host.js` / `ui-probe.client.js` — 开发期自审工具。
 - `DESIGN-NOTES.md` — 设计决策：token 分层、色板、圆角网格、验证流程。
 - `docs/` — 截图。
 

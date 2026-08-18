@@ -15,29 +15,7 @@ A Dieter Rams-inspired theme for the [DeepSeek Harness](https://github.com/deeps
 
 ## Installation
 
-Three paths, same result. Pick whichever fits your setup.
-
-### Path A · Ask the agent (zero dependencies, recommended)
-
-Works on any DSH deployment — no npm, no CLI, no copying code. Just send the agent this one line:
-
-> 帮我安装 Weniger 主题：仓库是 github:lesliechowsh/dsh-weniger-theme，把其中的 `weniger-theme.client.js` 创建为动态 Cordis 插件并运行。
-
-Then click **approve** on the Run card — the UI switches to Weniger immediately.
-
-<details>
-<summary>Offline fallback (agent without network access)</summary>
-
-Paste the **full content** of `weniger-theme.client.js` after this prompt:
-
-> Create the following code as a dynamic Cordis plugin and run it:
-> `(paste the entire weniger-theme.client.js here)`
-
-</details>
-
-### Path B · Plugin package via npm (ecosystem standard)
-
-For DSH distributions that ship the `dsh plugin` subcommand:
+Install as a DSH web plugin, then restart `dsh web`:
 
 ```sh
 dsh plugin --profile web add dsh-weniger-theme@latest
@@ -49,14 +27,35 @@ Or straight from the GitHub repo:
 dsh plugin --profile web add github:lesliechowsh/dsh-weniger-theme
 ```
 
-Restart `dsh web` to take effect.
+<details>
+<summary>Deployments without the <code>dsh plugin</code> subcommand (manual install)</summary>
 
-### Uninstall
+1. Install the package into your web profile:
 
-- Sidebar footer → plugin manager (Cordis panel) → find **Weniger** → stop/remove; or
-- Tell the agent: *"Remove the Weniger plugin"*.
+   ```sh
+   cd "$DSH_HOME/profiles/web"
+   npm install dsh-weniger-theme
+   ```
 
-On activation the theme switches the UI to the light scheme once; you can still switch back to dark in Settings → Appearance afterwards (the Weniger dark palette is complete).
+2. Append one insert entry to the profile's `cordis.patch.yml`:
+
+   ```yaml
+   - insert:
+       - id: weniger-theme
+         name: 'dsh-weniger-theme'
+   ```
+
+3. Restart `dsh web`.
+
+</details>
+
+## Uninstall
+
+```sh
+dsh plugin --profile web remove dsh-weniger-theme
+```
+
+(Manual installs: remove the `cordis.patch.yml` entry and the dependency, then restart.) The theme switches the UI to the light scheme once on activation; you can switch back to dark in Settings → Appearance afterwards — the Weniger dark palette is complete.
 
 ---
 
@@ -69,9 +68,9 @@ On activation the theme switches the UI to the light scheme once; you can still 
 
 ## Repository layout
 
-- `weniger-theme.client.js` — the theme as a dynamic-plugin client half (install Path A).
-- `client.js` + `index.js` + `package.json` — the same theme as a standard DSH client module (`dsh.client` manifest, install Path B).
-- `ui-probe.host.js` / `ui-probe.client.js` — optional self-review tooling (computed-style probe + Snapdom screenshot capture) used during development.
+- `client.js` + `index.js` + `package.json` — the plugin as a standard DSH client module (`dsh.client` manifest).
+- `weniger-theme.client.js` — the development form (dynamic plugin) used for iteration; not required for installation.
+- `ui-probe.host.js` / `ui-probe.client.js` — self-review tooling used during development.
 - `DESIGN-NOTES.md` — design decisions: token layers, palette, radius grid, verification loop.
 - `docs/` — screenshots.
 
