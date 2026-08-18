@@ -2,8 +2,18 @@
   "name": "dsh-weniger-theme",
   "version": "0.1.0",
   "description": "Weniger — \"less, but better\": a Dieter Rams-inspired theme for the DeepSeek Harness Web GUI. Warm paper whites, hairline borders, one signal-orange accent, squared 0-4px geometry, flat surfaces, one Swiss type stack.",
-  "main": "client.js",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "default": "./index.js"
+    },
+    "./client": {
+      "default": "./client.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
+    "index.js",
     "client.js",
     "weniger-theme.client.js"
   ],
@@ -29,7 +39,12 @@
     "weniger",
     "braun-style"
   ],
+  "author": "lesliechowsh",
   "license": "MIT",
+  "homepage": "https://github.com/lesliechowsh/dsh-weniger-theme#readme",
+  "bugs": {
+    "url": "https://github.com/lesliechowsh/dsh-weniger-theme/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/lesliechowsh/dsh-weniger-theme"

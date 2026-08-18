@@ -2,6 +2,9 @@
 
 [中文文档](./README.zh.md)
 
+[![npm](https://img.shields.io/npm/v/dsh-weniger-theme)](https://www.npmjs.com/package/dsh-weniger-theme)
+[![license](https://img.shields.io/npm/l/dsh-weniger-theme)](LICENSE)
+
 *„Weniger, aber besser" — Less, but better.*
 
 A Dieter Rams-inspired theme for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH) Web GUI: warm paper whites, hairline borders, near-black ink, one signal-orange accent, squared 0–4px geometry, flat surfaces, and a single Swiss type stack across the whole UI.
@@ -12,7 +15,7 @@ A Dieter Rams-inspired theme for the [DeepSeek Harness](https://github.com/deeps
 
 ## Installation
 
-Two paths, same result. Pick either.
+Three paths, same result. Pick whichever fits your setup.
 
 ### Path A · Ask the agent (zero dependencies, recommended)
 
@@ -31,17 +34,21 @@ Works on any DSH deployment — no npm, no CLI:
 3. Click **approve** on the Run card.
 4. The UI switches to Weniger immediately.
 
-### Path B · Plugin package (ecosystem standard)
+### Path B · Plugin package via npm (ecosystem standard)
 
-For DSH distributions that ship the `dsh plugin` subcommand, install straight from the GitHub repo:
+For DSH distributions that ship the `dsh plugin` subcommand:
+
+```sh
+dsh plugin --profile web add dsh-weniger-theme@latest
+```
+
+Or straight from the GitHub repo:
 
 ```sh
 dsh plugin --profile web add github:lesliechowsh/dsh-weniger-theme
 ```
 
 Restart `dsh web` to take effect.
-
-> Note: this project does **not** publish to npm. Use Path A or Path B (git).
 
 ### Uninstall
 
@@ -62,9 +69,10 @@ On activation the theme switches the UI to the light scheme once; you can still 
 ## Repository layout
 
 - `weniger-theme.client.js` — the theme as a dynamic-plugin client half (install Path A).
-- `client.js` + `package.json` — the same theme as a standard DSH client module (`dsh.client` manifest, install Path B).
+- `client.js` + `index.js` + `package.json` — the same theme as a standard DSH client module (`dsh.client` manifest, install Path B).
 - `ui-probe.host.js` / `ui-probe.client.js` — optional self-review tooling (computed-style probe + Snapdom screenshot capture) used during development.
 - `DESIGN-NOTES.md` — design decisions: token layers, palette, radius grid, verification loop.
+- `docs/` — screenshots.
 
 ## License
 

@@ -2,6 +2,9 @@
 
 [English](./README.md)
 
+[![npm](https://img.shields.io/npm/v/dsh-weniger-theme)](https://www.npmjs.com/package/dsh-weniger-theme)
+[![license](https://img.shields.io/npm/l/dsh-weniger-theme)](LICENSE)
+
 *„Weniger, aber besser" —— 少，但更好。*
 
 一个受迪特·拉姆斯设计哲学启发的 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）Web GUI 主题：暖纸白底色、发丝线边框、近黑墨色、唯一的信号橙点缀、0–4px 直角网格、完全扁平的无阴影表面，以及全界面统一的瑞士字体栈。
@@ -12,7 +15,7 @@
 
 ## 安装
 
-两种方式任选其一，效果相同。
+三种方式任选其一，效果相同，按你的环境挑一种即可。
 
 ### 方式 A · 让 agent 安装（零依赖，推荐）
 
@@ -31,17 +34,21 @@
 3. 在弹出的 Run 卡片上点击**批准**。
 4. 界面立即切换为 Weniger 风格。
 
-### 方式 B · 插件包安装（生态标准）
+### 方式 B · npm 插件包安装（生态标准）
 
-适用于带 `dsh plugin` 子命令的 DSH 发行版，直接从 GitHub 仓库安装：
+适用于带 `dsh plugin` 子命令的 DSH 发行版：
+
+```sh
+dsh plugin --profile web add dsh-weniger-theme@latest
+```
+
+也可以直接从 GitHub 仓库安装：
 
 ```sh
 dsh plugin --profile web add github:lesliechowsh/dsh-weniger-theme
 ```
 
 重启 `dsh web` 生效。
-
-> 说明：本项目**不发布 npm 包**；安装请走方式 A 或方式 B（git）。
 
 ### 卸载
 
@@ -62,9 +69,10 @@ dsh plugin --profile web add github:lesliechowsh/dsh-weniger-theme
 ## 仓库结构
 
 - `weniger-theme.client.js` — 动态插件形式的主题（安装方式 A）。
-- `client.js` + `package.json` — 同一主题的标准 DSH 客户端模块（`dsh.client` manifest，安装方式 B）。
+- `client.js` + `index.js` + `package.json` — 同一主题的标准 DSH 客户端模块（`dsh.client` manifest，安装方式 B）。
 - `ui-probe.host.js` / `ui-probe.client.js` — 开发期自审工具（计算样式探针 + Snapdom 截图回传），可选。
 - `DESIGN-NOTES.md` — 设计决策：token 分层、色板、圆角网格、验证流程。
+- `docs/` — 截图。
 
 ## 许可证
 
