@@ -1,50 +1,54 @@
 # Weniger
 
+[中文文档](./README.zh.md)
+
 *„Weniger, aber besser" — Less, but better.*
 
 A Dieter Rams-inspired theme for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH) Web GUI: warm paper whites, hairline borders, near-black ink, one signal-orange accent, squared 0–4px geometry, flat surfaces, and a single Swiss type stack across the whole UI.
 
+![Weniger — DSH Web GUI with the Weniger theme applied, and the ten-principles panel open](docs/screenshot-hero.png)
+
 ---
 
-## 安装 / Installation
+## Installation
 
-两种方式任选其一，效果相同。
+Two paths, same result. Pick either.
 
-### 方式 A · 让 agent 安装（零依赖，推荐）
+### Path A · Ask the agent (zero dependencies, recommended)
 
-任何 DSH 部署都能用，不需要 npm，不需要 CLI：
+Works on any DSH deployment — no npm, no CLI:
 
-1. 启动 DSH Web（`dsh --profile web`）并进入任意会话。
-2. 把下面的提示词发给 agent，并把 `weniger-theme.client.js` 的**全文**粘贴给它：
+1. Start DSH Web (`dsh --profile web`) and open any session.
+2. Send this prompt to the agent, pasting the **full content** of `weniger-theme.client.js`:
 
-   > 请把下面的代码创建为动态 Cordis 插件并运行：
-   > `（粘贴 weniger-theme.client.js 全部内容）`
+   > Create the following code as a dynamic Cordis plugin and run it:
+   > `(paste the entire weniger-theme.client.js here)`
 
-   也可以让 agent 自己读仓库文件：
+   Or let the agent fetch the file itself:
 
-   > 安装 Weniger 主题：读取 https://github.com/lesliechowsh/dsh-weniger-theme 仓库里的 weniger-theme.client.js，创建为动态 Cordis 插件并运行。
+   > Install the Weniger theme: read `weniger-theme.client.js` from the repo https://github.com/lesliechowsh/dsh-weniger-theme, create it as a dynamic Cordis plugin, and run it.
 
-3. 在弹出的 Run 卡片上点击**批准**。
-4. 界面立即切换为 Weniger 风格。
+3. Click **approve** on the Run card.
+4. The UI switches to Weniger immediately.
 
-### 方式 B · 插件包安装（生态标准）
+### Path B · Plugin package (ecosystem standard)
 
-适用于带 `dsh plugin` 子命令的 DSH 发行版，直接从 GitHub 仓库安装：
+For DSH distributions that ship the `dsh plugin` subcommand, install straight from the GitHub repo:
 
 ```sh
 dsh plugin --profile web add github:lesliechowsh/dsh-weniger-theme
 ```
 
-重启 `dsh web` 生效。
+Restart `dsh web` to take effect.
 
-> 说明：本项目**不发布 npm 包**；安装走方式 A 或方式 B（git）。
+> Note: this project does **not** publish to npm. Use Path A or Path B (git).
 
-### 卸载 / Uninstall
+### Uninstall
 
-- 侧边栏底部 → 插件管理器（Cordis 面板）→ 找到 Weniger → 停用/移除；
-- 或对 agent 说：*"移除 Weniger 插件"*（@rams-1 停止并删除）。
+- Sidebar footer → plugin manager (Cordis panel) → find **Weniger** → stop/remove; or
+- Tell the agent: *"Remove the Weniger plugin"*.
 
-主题会在激活时把界面切换到浅色方案一次；之后你仍可在「设置 → 外观」切回深色（Weniger 的深色变体同样完整）。
+On activation the theme switches the UI to the light scheme once; you can still switch back to dark in Settings → Appearance afterwards (the Weniger dark palette is complete).
 
 ---
 
@@ -57,8 +61,8 @@ dsh plugin --profile web add github:lesliechowsh/dsh-weniger-theme
 
 ## Repository layout
 
-- `weniger-theme.client.js` — the theme as a dynamic-plugin client half (install path A).
-- `client.js` + `package.json` — the same theme as a standard DSH client module (`dsh.client` manifest, install paths B/C).
+- `weniger-theme.client.js` — the theme as a dynamic-plugin client half (install Path A).
+- `client.js` + `package.json` — the same theme as a standard DSH client module (`dsh.client` manifest, install Path B).
 - `ui-probe.host.js` / `ui-probe.client.js` — optional self-review tooling (computed-style probe + Snapdom screenshot capture) used during development.
 - `DESIGN-NOTES.md` — design decisions: token layers, palette, radius grid, verification loop.
 
