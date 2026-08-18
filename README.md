@@ -8,7 +8,7 @@ A Dieter Rams-inspired theme for the [DeepSeek Harness](https://github.com/deeps
 
 ## 安装 / Installation
 
-三种方式任选其一，效果相同。
+两种方式任选其一，效果相同。
 
 ### 方式 A · 让 agent 安装（零依赖，推荐）
 
@@ -29,25 +29,15 @@ A Dieter Rams-inspired theme for the [DeepSeek Harness](https://github.com/deeps
 
 ### 方式 B · 插件包安装（生态标准）
 
-适用于带 `dsh plugin` 子命令的 DSH 发行版（npm 发布后）：
+适用于带 `dsh plugin` 子命令的 DSH 发行版，直接从 GitHub 仓库安装：
 
 ```sh
-dsh plugin --profile web add dsh-weniger-theme@latest
-# 或直接从 GitHub 仓库安装：
 dsh plugin --profile web add github:lesliechowsh/dsh-weniger-theme
 ```
 
 重启 `dsh web` 生效。
 
-### 方式 C · npm 全局安装
-
-```sh
-npm install -g dsh-weniger-theme
-# 然后配合 dsh plugin 命令启用，或直接从 GitHub 安装：
-npm install -g github:lesliechowsh/dsh-weniger-theme
-```
-
-> 说明：本包暂未发布到 npm registry（版本 0.1.0 前会发布）。当前推荐方式 A 或 B 的 git 形式。
+> 说明：本项目**不发布 npm 包**；安装走方式 A 或方式 B（git）。
 
 ### 卸载 / Uninstall
 
