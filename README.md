@@ -19,20 +19,21 @@ Three paths, same result. Pick whichever fits your setup.
 
 ### Path A · Ask the agent (zero dependencies, recommended)
 
-Works on any DSH deployment — no npm, no CLI:
+Works on any DSH deployment — no npm, no CLI, no copying code. Just send the agent this one line:
 
-1. Start DSH Web (`dsh --profile web`) and open any session.
-2. Send this prompt to the agent, pasting the **full content** of `weniger-theme.client.js`:
+> 帮我安装 Weniger 主题：仓库是 github:lesliechowsh/dsh-weniger-theme，把其中的 `weniger-theme.client.js` 创建为动态 Cordis 插件并运行。
 
-   > Create the following code as a dynamic Cordis plugin and run it:
-   > `(paste the entire weniger-theme.client.js here)`
+Then click **approve** on the Run card — the UI switches to Weniger immediately.
 
-   Or let the agent fetch the file itself:
+<details>
+<summary>Offline fallback (agent without network access)</summary>
 
-   > Install the Weniger theme: read `weniger-theme.client.js` from the repo https://github.com/lesliechowsh/dsh-weniger-theme, create it as a dynamic Cordis plugin, and run it.
+Paste the **full content** of `weniger-theme.client.js` after this prompt:
 
-3. Click **approve** on the Run card.
-4. The UI switches to Weniger immediately.
+> Create the following code as a dynamic Cordis plugin and run it:
+> `(paste the entire weniger-theme.client.js here)`
+
+</details>
 
 ### Path B · Plugin package via npm (ecosystem standard)
 

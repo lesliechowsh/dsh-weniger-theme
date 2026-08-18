@@ -19,20 +19,21 @@
 
 ### 方式 A · 让 agent 安装（零依赖，推荐）
 
-任何 DSH 部署都能用，不需要 npm，不需要 CLI：
+任何 DSH 部署都能用，不需要 npm，不需要 CLI，也不用复制代码。只发给 agent 这一句话：
 
-1. 启动 DSH Web（`dsh --profile web`），进入任意会话。
-2. 把下面的提示词发给 agent，并把 `weniger-theme.client.js` 的**全文**粘贴给它：
+> 帮我安装 Weniger 主题：仓库是 github:lesliechowsh/dsh-weniger-theme，把其中的 `weniger-theme.client.js` 创建为动态 Cordis 插件并运行。
 
-   > 请把下面的代码创建为动态 Cordis 插件并运行：
-   > `（在此粘贴 weniger-theme.client.js 的全部内容）`
+然后点击 Run 卡片上的**批准**——界面立即切换为 Weniger 风格。
 
-   也可以让 agent 自己去读仓库文件：
+<details>
+<summary>无网络时的备选（agent 无法联网取文件）</summary>
 
-   > 安装 Weniger 主题：读取 https://github.com/lesliechowsh/dsh-weniger-theme 仓库中的 weniger-theme.client.js，创建为动态 Cordis 插件并运行。
+把 `weniger-theme.client.js` 的**全文**粘贴到这句话后面：
 
-3. 在弹出的 Run 卡片上点击**批准**。
-4. 界面立即切换为 Weniger 风格。
+> 请把下面的代码创建为动态 Cordis 插件并运行：
+> `（在此粘贴 weniger-theme.client.js 的全部内容）`
+
+</details>
 
 ### 方式 B · npm 插件包安装（生态标准）
 
