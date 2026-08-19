@@ -5,12 +5,12 @@ return {
     // ---------- 1. Braun palette over the active theme (light + dark) ----------
     const theme = ctx.get('theme')
     if (theme !== undefined) {
-      try { theme.setTheme('light') } catch (err) { /* keep current preference */ }
+      // No forced scheme: respect the user's Appearance preference.
       ctx.effect(() => theme.overrideTokens('dieter-rams', {
         '--dsw-alias-bg-base': { light: '#F5F4F0', dark: '#1C1A17' },
         '--dsw-alias-bg-layer-1': { light: '#FBFAF7', dark: '#232220' },
         '--dsw-alias-bg-layer-2': { light: '#ECEAE4', dark: '#2C2A26' },
-        '--dsw-alias-bg-overlay': { light: '#FFFFFF', dark: '#232220' },
+        '--dsw-alias-bg-overlay': { light: '#FBFAF7', dark: '#232220' },
         '--dsw-alias-border-l1': { light: '#DFDDD5', dark: '#3A3832' },
         '--dsw-alias-border-l2': { light: '#BFBCB2', dark: '#57544B' },
         '--dsw-alias-brand-primary': { light: '#E8541E', dark: '#FF6B35' },
@@ -28,6 +28,9 @@ return {
       '/* ============ Dieter Rams — "Weniger, aber besser" ============ */' +
       '/* One Swiss font stack for the WHOLE UI (the app resolves --dsw-font-family) */' +
       ':root {' +
+      '  --weniger-radius-s: 2px;' +
+      '  --weniger-radius-m: 4px;' +
+      '  --weniger-radius-chip: 3px;' +
       "  --dsw-font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;" +
       "  --ds-font-family-code: 'SF Mono', 'JetBrains Mono', 'IBM Plex Mono', Menlo, Consolas, 'Liberation Mono', monospace;" +
       '}' +
@@ -59,7 +62,7 @@ return {
       '  --dsw-static-blue-800: #3A3935;' +
       '  --dsw-static-blue-900: #26241F;' +
       '  --dsw-static-blue-950: #1E1C19;' +
-      '  --dsw-static-neutral-bluish-00: #FFFFFF;' +
+      '  --dsw-static-neutral-bluish-00: #FBFAF7;' +
       '  --dsw-static-neutral-bluish-50: #FAFAF7;' +
       '  --dsw-static-neutral-bluish-60: #F1F0EB;' +
       '  --dsw-static-neutral-bluish-75: #EFEDE7;' +
@@ -80,7 +83,7 @@ return {
       '  --dsw-static-neutral-bluish-900: #232220;' +
       '  --dsw-static-neutral-bluish-950: #1E1C19;' +
       '  --dsw-static-neutral-bluish-1000: #1A1917;' +
-      '  --dsw-static-neutral-00: #FFFFFF;' +
+      '  --dsw-static-neutral-00: #FBFAF7;' +
       '  --dsw-static-neutral-50: #FAFAF7;' +
       '  --dsw-static-neutral-100: #F1F0EB;' +
       '  --dsw-static-neutral-150: #E6E4DD;' +
@@ -106,6 +109,7 @@ return {
       '  --dsw-static-green-500: #34754A;' +
       '  --dsw-static-green-900: #1F2B22;' +
       '  --dsw-static-red-50: #F7EAE7;' +
+      '  --dsw-static-red-100: #F7EAE7;' +
       '  --dsw-static-red-400: #FF7A6A;' +
       '  --dsw-static-red-500: #E05A45;' +
       '  --dsw-static-red-600: #B53D2E;' +
@@ -117,14 +121,15 @@ return {
       '  --dsw-alias-bg-module-platform: #EFEDE7;' +
       '  --dsw-alias-bg-multi-select: #ECEAE4;' +
       '  --dsw-alias-bg-skeleton: rgba(26, 25, 23, 0.05);' +
+      '  --dsw-alias-bg-mask-drop: rgba(251, 250, 247, 0.72);' +
       '  --dsw-alias-border-l2-darkmode-thin: rgba(26, 25, 23, 0.14);' +
       '  --dsw-alias-border-l3: rgba(26, 25, 23, 0.28);' +
       '  --dsw-alias-border-l4: rgba(26, 25, 23, 0.38);' +
       '  --dsw-alias-brand-primary-new-colorprimary-new-color: #E8541E;' +
       '  --dsw-alias-brand-text: #1A1917;' +
       '  --dsw-alias-button-contrast-fill: #1A1917;' +
-      '  --dsw-alias-button-elevated-fill: #FFFFFF;' +
-      '  --dsw-alias-button-floating-fill: #FFFFFF;' +
+      '  --dsw-alias-button-elevated-fill: #FBFAF7;' +
+      '  --dsw-alias-button-floating-fill: #FBFAF7;' +
       '  --dsw-alias-button-floating-hover: #F1EFE9;' +
       '  --dsw-alias-button-ghost-active-border: #6B6A63;' +
       '  --dsw-alias-button-ghost-active-fill: #ECEAE4;' +
@@ -133,6 +138,9 @@ return {
       '  --dsw-alias-button-info-hover: #C94814;' +
       '  --dsw-alias-button-primary-dimmed: #ECEAE4;' +
       '  --dsw-alias-button-primary-hover: #3A3935;' +
+      '  --dsw-alias-button-tool-bar-fill: rgba(59, 57, 53, 0.5);' +
+      '  --dsw-alias-button-tool-bar-fill-invisible: rgba(38, 36, 33, 0.36);' +
+      '  --dsw-alias-button-tool-bar-hover: rgba(59, 57, 53, 0.62);' +
       '  --dsw-alias-interactive-bg-active: rgba(26, 25, 23, 0.08);' +
       '  --dsw-alias-interactive-bg-hover-accent: rgba(232, 84, 30, 0.10);' +
       '  --dsw-alias-interactive-bg-hover-danger: rgba(181, 61, 46, 0.06);' +
@@ -148,7 +156,7 @@ return {
       '  --dsw-alias-markdown-citation: #EFEDE7;' +
       '  --dsw-alias-markdown-code-block-banner: #F7F6F2;' +
       '  --dsw-alias-markdown-code-block: #F7F6F2;' +
-      '  --dsw-alias-markdown-code-segment-selected: #FFFFFF;' +
+      '  --dsw-alias-markdown-code-segment-selected: #FBFAF7;' +
       '  --dsw-alias-markdown-code-segment-unselected: #EFEDE7;' +
       '  --dsw-alias-markdown-inline-code: #EFEDE7;' +
       '  --dsw-alias-markdown-placeholder: #F1F0EB;' +
@@ -165,9 +173,9 @@ return {
       '  --dsw-alias-tooltip-bg: #23221F;' +
       '  --dsw-specific-bubble-highlight: rgba(232, 84, 30, 0.20);' +
       '  --dsw-specific-bubble: #FBFAF7;' +
-      '  --dsw-specific-input-major: #FFFFFF;' +
+      '  --dsw-specific-input-major: #FBFAF7;' +
       '  --dsw-specific-login-input: #F5F4F0;' +
-      '  --dsw-specific-menu: #FFFFFF;' +
+      '  --dsw-specific-menu: #FBFAF7;' +
       '  --dsw-specific-selector: #ECEAE4;' +
       '  --dsw-specific-sidebar-nav-item-active-accent: #E8541E;' +
       '  --dsw-specific-sidebar-nav-item-active: #E6E4DD;' +
@@ -262,42 +270,22 @@ return {
       '  --shiki-token-punctuation: #8F8D83;' +
       '  --shiki-token-link: #FF6B35;' +
       '}' +
-      '/* ---- Functional geometry: squared, precise controls ---- */' +
-      'button, input, textarea, select { border-radius: 2px; }' +
-      'input, textarea { border-color: var(--dsw-alias-border-l1); }' +
-      '.uV2eYG_card{border-radius:4px}' +
-      '.uV2eYG_notice{border-radius:3px}' +
-      '.uV2eYG_add{border-radius:4px}' +
-      '.uV2eYG_select{border-radius:4px}' +
-      '.uV2eYG_primary{border-radius:4px}' +
-      '.uV2eYG_chip{border-radius:3px;background:rgba(26,25,23,0.06)}' +
-      '.hHd-Xa_newSession{border-radius:4px}' +
-      '.gdEzaW_bubble{border-radius:4px;border:1px solid var(--dsw-alias-border-l1)}' +
-      '.gdEzaW_compactionButton{border-radius:3px}' +
-      '.gdEzaW_refChip{border-radius:3px;background:rgba(26,25,23,0.06)}' +
-      '.gdEzaW_retrySummary{border-radius:3px}' +
-      '.bqrRRG_card{border-radius:4px}' +
-      '.lXshSW_root{border-radius:4px}' +
-      '.Md3f7G_toBottom{border-radius:4px}' +
-      '.Md3f7G_callRow{border-radius:3px}' +
-      '.ztWv_q_callRow{border-radius:3px}' +
-      '.Md3f7G_older button{border-radius:4px}' +
-      '.JObwrW_panel{border-radius:4px}' +
-      '.JObwrW_trigger{border-radius:4px}' +
-      '.T1PP_q_selector{border-radius:4px}' +
-      '.p-xYUq_action{border-radius:4px}' +
-      '.Sh0Q9G_trigger{border-radius:4px}' +
-      '.pC0e7a_body{border-radius:4px}' +
-      '.ydkMvW_code{border-radius:4px}' +
-      '.ydkMvW_close{border-radius:4px}' +
-      '.CY-8Ka_ioCard{border-radius:4px}' +
-      '.o3BgMG_ioCard{border-radius:4px}' +
-      '.xDAfVq_code{border-radius:4px}' +
-      '.CY-8Ka_inspectButton{border-radius:4px}' +
-      '.o3BgMG_inspectButton{border-radius:4px}' +
-      '.cvtE3a_output{border-radius:4px}' +
-      '.Nqubda_badge{border-radius:4px}' +
-      '.Nqubda_rail .Nqubda_badge{border-radius:4px}' +
+      '/* ---- Systematic geometry: pattern sweeps over the component vocabulary. ---- */' +
+      '/* No hashed class is named: any shipped or third-party component whose   */' +
+      '/* class matches the vocabulary inherits the Rams grid automatically,     */' +
+      '/* unless it deliberately overrides with its own styles.                  */' +
+      'button { border-radius: var(--weniger-radius-s); }' +
+      'input, textarea, select { border-radius: var(--weniger-radius-s); }' +
+      '[class*="card"], [class*="Card"], [class*="panel"], [class*="Panel"],' +
+      '[class*="bubble"], [class*="Bubble"], [class*="code"], [class*="Code"],' +
+      '[class*="output"], [class*="Output"], [class*="selector"], [class*="Selector"],' +
+      '[class*="notice"], [class*="Notice"], [class*="root"], [class*="Root"],' +
+      '[class*="Session"], [class*="badge"], [class*="Badge"], [class*="toBottom"],' +
+      '[class*="_body"] { border-radius: var(--weniger-radius-m); }' +
+      '[class*="chip"], [class*="Chip"] { border-radius: var(--weniger-radius-chip); background: rgba(26, 25, 23, 0.06); }' +
+      '[class*="Row"], [class*="row"] { border-radius: var(--weniger-radius-chip); }' +
+      '[class*="trigger"], [class*="Trigger"], [class*="action"], [class*="Action"],' +
+      '[class*="close"], [class*="Close"], [class*="add"], [class*="Add"], [class*="select"] { border-radius: var(--weniger-radius-m); }' +
       '/* ---- Quiet state feedback instead of decoration ---- */' +
       'button { transition: filter 0.12s ease; }' +
       'button:hover { filter: brightness(0.965); }' +
