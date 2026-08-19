@@ -12,8 +12,8 @@ Why the values in `dieter-rams-theme.client.js` are what they are. Read before c
 
 ## The app's token graph (where the levers are)
 
-All sheets live in the built checkout
-`/data/data/com.termux/files/usr/lib/node_modules/@deepseek-ai/dsh/node_modules/@deepseek-ai/dsh-client-ui-theme/lib/styles/`:
+All sheets live inside the DSH deployment's own checkout, under
+`node_modules/@deepseek-ai/dsh-client-ui-theme/lib/styles/`:
 
 - `design-platform.css` — the full map. `body { --dsw-static-* }` (raw palette), `body { --dsw-alias-* / --dsw-specific-* }` (light), `body[data-ds-dark-theme] { ... }` (dark).
 - `base.css` — `:root { --dsw-font-family, --ds-font-family-code }` and easing vars.
