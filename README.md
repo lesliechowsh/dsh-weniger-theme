@@ -21,6 +21,13 @@ Install as a DSH web plugin, then restart `dsh web`:
 dsh plugin --profile web add dsh-weniger-theme@latest
 ```
 
+> **Upgrading from ≤ 0.1.3?** Those versions shipped no `dsh.bundle` declaration,
+> so `dsh plugin add` silently installed the package as a plain dependency —
+> the theme never loaded and `/plugins/dsh-weniger-theme/client.js` returned
+> 404. 0.1.4 adds `cordis.patch.yml` as a bundle patch layer; re-run the add
+> command above (or `dsh plugin --profile web update dsh-weniger-theme`) and
+> restart `dsh web` — the reconciler picks up the declaration automatically.
+
 Or straight from the GitHub repo:
 
 ```sh

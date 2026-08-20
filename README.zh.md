@@ -21,6 +21,8 @@
 dsh plugin --profile web add dsh-weniger-theme@latest
 ```
 
+> **从 ≤ 0.1.3 升级？** 旧版没有声明 `dsh.bundle`，`dsh plugin add` 只会把它装成普通依赖——主题不加载，`/plugins/dsh-weniger-theme/client.js` 返回 404。0.1.4 新增 `cordis.patch.yml` 作为 bundle 补丁层；重新执行上面的 add 命令（或 `dsh plugin --profile web update dsh-weniger-theme`）并重启 `dsh web`，reconciler 会自动识别声明并激活。
+
 也可以直接从 GitHub 仓库安装：
 
 ```sh

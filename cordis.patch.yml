@@ -1,0 +1,7 @@
+# The dsh-weniger-theme bundle patch: mounts this package's client face as a
+# loader row so dsh-client-modules serves it into the web runtime's
+# window.__DSH_BOOT__ graph. Applied as ONE insert over the profile root
+# (after the in-box bundle layers, before the user's cordis.patch.yml).
+- insert:
+    - id: weniger-theme
+      name: 'dsh-weniger-theme'
